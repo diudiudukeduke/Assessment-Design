@@ -1,38 +1,33 @@
-# Submission
+# Submission: 5a guided brief, rebuild the quiz agent
 
-Put what you hand in here. Page 06 of the learning kit explains each file and how it is graded,
-and its `sample-submission/` folder shows a finished set.
+**Task:** Guided (5a). I rebuilt the missing `assessment-designer` agent from
+`specs/assessment-designer-spec.md`, ran it on `intro-python-lists-hs` module 1, and fixed it until
+the checker showed no blocking findings.
 
-**First the output.** The renderer writes it to `dist/`, which is not in Git, so copy it here
-yourself. Hand it in as the renderer wrote it, without editing it.
+**Built:** `.claude/agents/assessment-designer.md`. It writes the student quiz, the instructor key,
+and the TA feedback pack, and keeps a hard wall between student and instructor files.
 
-| Task | File | Where it comes from |
+## Commits
+
+| Point | Commit | What it holds |
 | --- | --- | --- |
-| Guided (5a) | `quiz-after.pdf` | Copy `courses/intro-python-lists-hs/dist/03-assessments/student/quiz-m01.pdf` |
-| Challenge (5b) | `deck-after.pdf` | Copy `courses/intro-python-lists-hs/dist/02-deck/deck-m01.pdf` |
-| Challenge (5b) | `deck-before.pdf` | The same deck, rendered and committed before your first change |
+| Before | `14de437` | `qa-report-before.md`, taken before any change |
+| Round 1 output | `442364e` | First quiz, key, and TA pack written by the agent |
+| After | `83a6f92` | Round 2 output from the fixed agent, and `qa-report-after.md` |
 
-**Then the evidence.**
+## Result
 
-| File | What goes in it |
-| --- | --- |
-| `README.md` | Replace this file: which task, what you changed, the commit ID before and after |
-| `qa-report-before.md` | Your "before": test and checker output (Guided) or the QA report (Challenge) |
-| `qa-report-after.md` | The same, after your change |
-| `slide-scores.csv` | Challenge only: `concept,before_slide,before_score,after_slide,after_score,note` |
-| `report.md` | One page: the problem, what you changed, the results, what did not work, the limits |
-| `video-link.md` | Optional. Link to your 3-minute video |
-| `ai-usage.md` | How you used AI, and one place you did not take its suggestion, and why |
+| Check | Before | After |
+| --- | --- | --- |
+| Agent tests | 1 failure | 11 of 11 pass |
+| Checker, through production, no PDF | 3 blocking, 1 minor | 0 blocking, 2 minor |
 
-Commit `qa-report-before.md` (and, for the Challenge, `deck-before.pdf`) before you change anything.
+The two minor findings are both `HEADING-CASE`. One is the known false positive on the deck. The
+other is a long Q5 heading in the key. Neither blocks.
 
-## How to submit
+## Files
 
-1. Push everything to your repo on GitHub, including this folder.
-2. Add `AzurePartners` as a collaborator, so a mentor can open your private repo: **Settings**,
-   **Collaborators**, **Add people**, then type `AzurePartners`.
-3. Fill in the [hand-in form](https://forms.gle/YkC7uzLZuwVbCZVFA): your repo link, the final
-   commit ID, and a short reflection.
-
-Changed something after you submitted? Push it and fill in the form again. The mentor reviews your
-latest submission.
+- `quiz-after.pdf`: the quiz the agent wrote, as rendered, unedited
+- `qa-report-before.md`, `qa-report-after.md`: test and checker output
+- `report.md`: what went wrong, what I changed, and three hand-checked questions
+- `ai-usage.md`: how I used AI, and one suggestion I did not take
