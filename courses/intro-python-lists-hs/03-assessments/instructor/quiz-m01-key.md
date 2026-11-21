@@ -13,75 +13,73 @@ Instructor only. Never copy into the student tree.
 
 ## Q1 - Answer: C
 
-- A: a student choosing this counts from 1 in daily life and thinks the first item has index 1. `songs[1]` gives "Blue Window" (SP-1.1).
-- B: a student choosing this confuses the count with a position. `len(songs)` is the number 4, not a song (SP-1.3).
-- **C is correct.** The first item is zero steps from the start, so its index is 0 (SP-1.1).
-- D: a student choosing this thinks a list is looked up by value, the way `remove()` takes a value. An index must be a number, so this raises an error.
+- A: a student choosing this thinks the first song sits at the "count minus one" index. They have swapped the first index for the last one (SP-1.3).
+- B: a student choosing this thinks the first item has index 1, because everyday counting starts at one (SP-1.1).
+- **C is correct.** An index is the distance from the start, so the first item has index 0 and `songs[0]` gives Sunrise Walk (SP-1.1).
+- D: a student choosing this thinks square brackets accept a title, like `remove()` does. An index must be a position number.
 
-## Q2 - Answer: A
+## Q2 - Answer: B
 
-- **A is correct.** `len()` counts items, so it gives 4. Indexes start at 0, so the last valid index is `len(songs) - 1`, which is 3. Index 4 does not exist, so Python raises `IndexError` (SP-1.2, SP-1.3).
-- B: a student choosing this believes indexes start at 1, so the last index equals the count (SP-1.1, SP-1.2).
-- C: a student choosing this mixes up the count and the last index, and thinks `len()` returns 3 for four items (SP-1.3).
-- D: a student choosing this thinks a missing index is harmless and returns nothing. Python stops the program instead (SP-1.2).
+- A: a student choosing this thinks `len()` returns the last index, so they confuse the count with a position (SP-1.3).
+- **B is correct.** `len(songs)` counts four items, indexes run 0 to 3, and index 4 does not exist, so Python stops with an `IndexError` (SP-1.2, SP-1.3).
+- C: a student choosing this thinks indexes start at 1, so the last index is 4 and `songs[4]` is the fourth song (SP-1.1, SP-1.2).
+- D: a student choosing this thinks a missing index quietly gives `None`, as `append()` returns `None`. A missing index stops the program (SP-1.2).
 
-## Q3 - Answer: B
+## Q3 - Answer: D
 
-- A: a student choosing this thinks `append()` leaves the old list alone and hands back a new one.
-- **B is correct.** `append()` changes the list in place, so `len(songs)` is 5. It returns `None`, so `result` is `None` (SP-1.4, SP-0.6).
-- C: a student choosing this thinks a method returns the changed list, the same belief as the forum poster who got `None` after `Newlist = List.append(7)` (SP-1.4).
-- D: a student choosing this thinks a method hands back the item it added. It hands back nothing (SP-1.4).
+- A: a student choosing this thinks assigning the result of `append()` captures the change, so `songs` stays at four items. `append()` changes `songs` itself (SP-1.4).
+- B: a student choosing this thinks `append()` returns the item it added (SP-1.4).
+- C: a student choosing this thinks `append()` hands back the changed list, so `result` holds it. This is the sourced misconception where a poster got `None` after `Newlist = List.append(7)` (SP-1.4).
+- **D is correct.** `append()` changes the list in place, so `len(songs)` is 5. It returns `None`, so `result` is `None` (SP-1.4).
 
-## Q4 - Answer: D
+## Q4 - Answer: A
 
-- A: a student choosing this thinks `remove(1)` means position 1, because `songs[1]` uses a number in the same shape (SP-1.5).
-- B: a student choosing this thinks `remove(1)` means "the first item", counting from 1 (SP-1.5, SP-1.1).
-- C: a student choosing this thinks a delete that matches nothing is ignored (SP-1.5).
-- **D is correct.** `remove()` compares its value with each item using equality. The list holds only text, so no item equals 1. Python raises `ValueError` and the program stops at that line (SP-1.5, SP-0.6).
+- **A is correct.** `remove()` compares the value you give with each item and removes the first match. No item equals 1, so Python raises a `ValueError` at that line (SP-1.5, SP-0.6).
+- B: a student choosing this thinks `remove(1)` means "remove the item at position 1", because `songs[1]` has the same shape. `remove()` matches by value (SP-1.5, hypothesis in the source pack).
+- C: a student choosing this thinks `remove()` takes a position and that positions start at 1 (SP-1.5, SP-1.1).
+- D: a student choosing this thinks a delete that matches nothing is harmless. Python raises an error and stops (SP-1.5, hypothesis in the source pack).
 
-## Q5 - Answer: change line 3, not line 1. Line 3 names a title that is not in the list, so `remove()` raises a `ValueError`. The result proves where the run stopped. It does not prove the rest of the file is right.
+## Q5 - Answer: ValueError at line 3, nothing printed because the run stops there; the result proves the name on line 3 matches no item, and does not prove the list is wrong; change the name in line 3 to Blue Window
 
-Source of truth: a written specification, the four starting titles in the starter file and the lab's expected-output block (four songs left, no error).
-Requirement quoted from the item: "The class's four starting titles are fixed, and they include "Blue Window". The finished program must remove "Blue Window" and end with four songs and no error."
-Boundary check: "Blue Windows" and "Blue Window" differ by one letter. `remove()` needs exact equality, so there is no match and the run stops at line 3 (SP-1.5). Changing line 1 would break the fixed titles, so the verdict on the classmate's plan is wrong. The fix is the name on line 3, and line 1 stays as it is.
+Source of truth: a written specification, the lab's four starting titles and expected-output block (six lines, four songs remain, no error).
+Requirement quoted from the item: "The four starting titles are fixed. After one song is added and one is removed by name, `playlist.py` must run to the end with no error and print the count and the first song."
+Boundary check: the name on line 3 is "Blue Windows" and the list holds "Blue Window". They differ by one letter, and `remove()` needs an exact match, so no item equals the name and the verdict is a fail. The titles are fixed by the requirement, so the list is right and the name is wrong. Correcting the name changes only line 3.
 
-What a full answer says:
+Model answer by part:
 
-- It proves that line 3 is where the run stops, that the error type is `ValueError`, and that lines 4 and 5 never ran.
-- It does not prove that lines 4 and 5 are right, because they never ran. It does not prove the final output, and it does not give the message wording, which the course has not captured (SP-U1).
-- The error alone does not say which side is wrong, the name or the list. The written specification decides that, and it fixes the titles.
+1. The error points at line 3. Python runs lines top to bottom and an error ends the run at the failing line, so lines 4 and 5 never run (SP-1.5).
+2. It proves line 3 asked `remove()` for a title no item equals, and that the program stopped there. It does not prove the list is misspelled, and it does not say which side is wrong. The requirement decides that. It also does not prove that line 2 failed: the run reached line 3, so the append ran.
+3. Change the name in line 3 to match the list. Do not change the list.
 
-Full credit needs the line number, the reason (exact match fails), and one limit of the result. A student who only says "fix the typo" gets partial credit.
+Marking note for the grader: the item is hand-worked, so the error type and line are given in the stem. Credit a learner who names the type and the line from the stem and gives the reason from the stop rule. Do not require any message wording, because none is taught (SP-U1).
 
-## Q6 - Answer: B
+## Q6 - Answer: C
 
-- A: a student choosing this thinks the loop variable counts indexes starting at 0 (SP-1.6).
-- **B is correct.** A `for` loop gives the loop variable each item in list order, so the first pass holds "Sunrise Walk" (SP-1.6, SP-0.5).
-- C: a student choosing this thinks the loop variable counts passes starting at 1 (SP-1.6).
-- D: a student choosing this thinks the loop variable holds the number of songs. It holds one song per pass.
+- A: a student choosing this thinks the loop variable holds the index. On the second pass, the index of Paper Planes is 1 (SP-1.6).
+- B: a student choosing this thinks the loop variable counts passes (SP-1.6).
+- **C is correct.** The loop variable holds each item in list order, so on pass two it holds Paper Planes (SP-1.6, SP-0.5).
+- D: a student choosing this thinks the loop variable collects every item seen so far. It holds one item per pass.
 
-## Q7 - Answer: no, the student is wrong. The output proves every song printed once, in order, with no error. It does not prove the numbers are right, and they are not: they run 0 to 3 instead of 1 to 4.
+## Q7 - Answer: B
 
-Source of truth: a written specification, the lab's expected-output block, whose numbered lines run 1 to 4.
-Requirement quoted from the item: "The numbers in the printout must run from 1 up to the number of songs, one number per song, in list order."
-Boundary check: 0 is below the allowed start, and the last number is 3 where the count of songs is 4, so the output fails at both ends. Start the counter at 1 and add one after the print. The printout is by hand and no run is claimed (SP-1.6).
+- A: a student choosing this checks only the songs and their order and ignores the numbers. The requirement also fixes the numbers.
+- **B is correct.** The counter starts at 0 and goes up after the print, so the numbers run 0 to 3. The requirement says 1, 2, 3, 4. The songs and their order are right, so the fault is only the counter start (SP-1.1, SP-1.6).
+- C: a student choosing this thinks the loop supplies the numbers, so the start cannot be changed. The counter is a variable you design, and starting it at 1 fixes the output.
+- D: a student choosing this counts the removed song, or counts every song ever added. The playlist holds four songs when the loop runs, so the numbers end at 4.
 
-What a full answer says:
+Source of truth for Q7: a written specification, the lab's expected-output block (numbers 1 to 4). Requirement quoted from the item: "For a playlist of four songs, the numbers run 1, 2, 3, 4." Boundary check: 0 is not in 1 to 4, so the first line already fails. The output is hand-worked: the loop prints the counter before adding one, so the four lines carry 0, 1, 2, 3.
 
-- It proves the loop visited all four songs, in list order, and nothing stopped it.
-- It does not prove the numbering. A printout can look tidy and still be off by one, and only the written requirement catches it.
+## Q8 - Answer: append "Art sketch", remove "Math sheet", print the count 3 and the first task Read chapter, then number the three tasks 1 to 3
 
-## Q8 - Answer: a program that builds the list, appends, removes by name, then prints the count, the first task, and every task numbered from 1. It prints a count of 3, first task "Read chapter", and three numbered lines.
+Source of truth: the user's request, the five steps in the item.
+Requirement quoted from the item: "Remove "Math sheet" by name." and "Print every task on its own line, numbered from 1".
+Boundary check: after the append there are four tasks, after the remove there are three, so the count is 3. The first task is now Read chapter, because the removed task was the old first one. The counter starts at 1 and goes up after the print.
 
-Source of truth: the user's request, quoted in the item.
-Requirement quoted from the item: "Add Essay outline. Drop Math sheet, because it is finished. Then show how many tasks are left, which task is first, and every task numbered from 1."
-Boundary check: the removed task, "Math sheet", is the first item, so the first task after the change is "Read chapter". The count after one add and one removal is 3. Numbers run 1, 2, 3.
-
-Model program:
+One correct program:
 
 ```python
-tasks = ["Math sheet", "Read chapter", "Lab report"]
-tasks.append("Essay outline")
+tasks = ["Math sheet", "Read chapter", "Science report"]
+tasks.append("Art sketch")
 tasks.remove("Math sheet")
 print("Tasks:", len(tasks))
 print("First task:", tasks[0])
@@ -91,18 +89,16 @@ for task in tasks:
     number = number + 1
 ```
 
-Model output:
+Expected printed lines, worked by hand:
 
 ```text
 Tasks: 3
 First task: Read chapter
 1 Read chapter
-2 Lab report
-3 Essay outline
+2 Science report
+3 Art sketch
 ```
 
-Rests on SP-1.1, SP-1.3, SP-1.4, SP-1.5, SP-1.6. Any counter name, any label wording, and any equivalent order that puts the `append()` and `remove()` lines before the prints are fine.
+What a learner who pattern-matched the capstone would answer instead: they print First task: Math sheet because in the capstone the first song never changed, or they print Tasks: 4 by stopping the count at the append and forgetting the remove. Credit any counter design whose output matches. Accept a different loop variable name.
 
-What a learner who pattern-matched the capstone would answer instead: a first task of "Math sheet" (the capstone's first song never leaves the list), or a count of 4 or numbers running to 4, from copying the song program's output.
-
-Marking notes for the human grader: look for exact title matches in `remove()`, no `if`, `range()`, or `enumerate()`, the counter set before the loop, and the add-one line inside the loop.
+Grading note: the append and remove lines must come before the print lines, or the output differs. A program that calls `remove()` with a name that is not in the list is a fail for step 2.

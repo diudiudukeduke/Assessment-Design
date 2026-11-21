@@ -16,40 +16,39 @@ no solutions, no answer letters. Write it assuming a student will read it.
 
 | Item | Outcome | What it checks | Common confusion, explained without the answer |
 | --- | --- | --- | --- |
-| Q1 | LO-2 | Choosing the expression that reads the first item of a list | In daily life people count from one, so they carry that habit into the brackets. Some also mix up a number that counts items with a number that names a position, or think a list is looked up by a title. |
-| Q2 | LO-2 | Relating the item count, the last valid index, and what an index past the end does | Learners treat the count and the last index as the same number. Some expect a missing position to give back nothing and let the program carry on. Ask what "distance from the start" means for the first item. |
-| Q3 | LO-3 | What `append()` changes, and what a method hands back | Many functions give back a result, so learners expect the same here. The change to the list is a side effect, which is separate from the value the call hands back. |
-| Q4 | LO-3 | Whether `remove()` works by value or by position | The brackets and number look like indexing, and the word "remove" sounds like "delete this spot". Some learners also think a delete that matches nothing is quietly ignored. |
-| Q5 | LO-5 | Reading an error for its type and its line, then deciding which side of a mismatch to change using the written specification | Learners fix whichever side is easiest, not the side the specification protects. Many also read a run that printed nothing as proof that the whole file is wrong, or as proof that it is fine. |
-| Q6 | LO-4 | What the loop variable holds on a pass | Learners expect a loop to hand out positions, as loops do in some other languages. The loop variable is a name for what the list holds, not for where it sits. |
-| Q7 | LO-4 | Judging a printout against a written numbering rule | A printout that looks tidy, has no error, and shows every song feels finished. The rule about where numbering starts and ends gets forgotten. Ask the learner to read the rule first, then the first and last lines. |
-| Q8 | LO-1 | Applying the whole build sequence to a new list, with the data in a different state | Learners copy the song program and keep its results without re-deriving what the list holds at the moment each print runs. Ask them to write the list's contents after each change before they write the print lines. |
+| Q1 | LO-2 | Choosing the expression that reads the first song from a list | Learners mix up a position with a count, or with the way they number things in daily life. Ask what "index" measures in the deck. |
+| Q2 | LO-2 | Linking the count from `len()` to the range of valid indexes, and what happens past the end | Learners treat the count and the last index as the same number. Some think a missing index gives back an empty value instead of stopping the program. |
+| Q3 | LO-3 | What `append()` does to the list and what it hands back | Learners expect a method to give back something useful, like a function that returns a result. The change to the list and the value handed back are two separate things. |
+| Q4 | LO-3 | `remove()` matches by value, not by position | The number inside brackets after a list name picks a position, so learners expect the same meaning inside `remove()`. Some also think a delete that finds nothing is harmless. |
+| Q5 | LO-5 | Reading an error for its type and its line, and judging what a failing run does and does not show | Learners say the list is wrong because it is the first thing they see, or they say the lines after the error ran. Python runs lines top to bottom and the specification, not a guess, decides which side to fix. |
+| Q6 | LO-4 | What the loop variable holds on a given pass | Learners think a `for` loop gives them positions or a pass count. Ask what the loop variable held in the deck's four-pass picture. |
+| Q7 | LO-4 | Judging numbered output against a written requirement | Learners check that the songs look right and skip the numbers, or they think the loop itself decides where numbering starts. The counter is a variable the learner designs. |
+| Q8 | LO-1 | Applying the whole playlist recipe to a new list | Learners copy the song program line by line and keep results that only held for the songs. The order of the lines and which item leaves the list change what later lines see. |
 
 ## Lab rubric criteria
 
-Each criterion is something a grader can see in the learner's `playlist.py`, their lab notes, or their run.
-
-- The run prints the lab's expected-output block, line for line, with nothing before or after it. The `setup ok` line is gone.
-- The file has a line that calls `append()` with "Garden Song" on its own line, above the line that prints the count.
-- The `remove()` line names a title that matches a list item letter for letter, and the list line still matches the starter.
-- The learner's Step 3 notes name the error type and the line number the error pointed to, and say what they compared.
-- The learner's Step 3 notes include a prediction written before the run, and a sentence after the run saying whether it held. The prediction is not marked for being right.
-- The counter variable is set on a line above the `for` line, and the add-one line is indented inside the loop.
-- The learner can point to the line that changed the list in Step 2 and the line that changed it in Step 3, and says in one sentence why each one changes it.
-- The file uses no `if`, `enumerate()`, `range()`, `try`, or `except`.
-- If the learner did the extension with their own titles, the notes say it was not compared against the expected-output block.
+- The submitted `playlist.py` prints exactly six lines when the grader runs it and compares with the lab's expected-output block, with no extra line before or after.
+- The file holds the first-song line with an index and the count line with `len()`, and the grader can point to each.
+- The `append()` call sits on its own line above the print lines, and it is not placed inside `print()` or on the right side of `=`.
+- The `remove()` line names a title that matches a list item letter for letter, and the list of starting titles is unchanged from the starter.
+- The student's Step 3 notes name the error type, name the line number the error pointed at, and say what they compared to find the fault.
+- The student's Step 3 prediction is written before the run, and the reflection says whether it held. Accuracy is not scored.
+- The numbered loop has a counter that is set before the `for` line, printed inside the loop, and changed by one inside the loop. The student can say which line changes it.
+- The loop variable is used in the `print()` line to show the song, not a number.
+- The student can state, in their own words, which value `remove()` looks at and which value `append()` hands back.
+- The debrief shows the student compared the full run with the expected-output block line by line, and noted any difference.
+- The code uses none of the tools the lab lists as not used: `if`, `enumerate()`, `range()`, `try`, and `except`.
 
 ## Hints that do not give the answer
 
-- "Point at the first title in the list. How many titles come before it? What does that tell you about its index?"
-- "What number does `len()` give for this list? What is the position of the last title? Are those the same number?"
-- "When you call `append()` on its own line, what changes? When you store the call in a variable, what does the variable hold? How could you check?"
-- "What does `remove()` compare against: the position of an item or the item itself? How would you test that with a list of your own?"
-- "Read the last line of the error. What is the error type? Which line number does it name? Open that line."
-- "Put the name in the `remove()` line next to the matching list title. Read both letter by letter. What do you notice?"
-- "Which part of the written specification can you not change? Which part of the code is allowed to change?"
-- "What does the program print when an error stops it on line 3? Do lines 4 and 5 get a turn?"
-- "On the first pass of the loop, what would you see if you printed the loop variable by itself?"
-- "Trace the counter by hand. What is its value when the first line prints? What is it on the last line? Now read the numbering rule."
-- "Before you write the print lines, write out what the list holds after each change. Which item sits at the front at that point?"
-- "Does the order of your lines matter? What does a print line see if it sits above or below the line that changes the list?"
+- Index questions: "Point at the first song in the picture. How many songs come before it?"
+- Count and index: "Which of the two numbers counts items, and which names a place? Which one starts at zero?"
+- `append()` questions: "Two things happen on that line. What changes, and what comes back? Which one does `print()` show?"
+- `remove()` questions: "What does `remove()` compare each item with? What does it do when no item matches?"
+- Error questions: "Which two facts do you read from an error first? Which line does it name, and did the lines below it run?"
+- Which side to fix: "Which document says what the titles must be? Does the list or the name in `remove()` disagree with it?"
+- Loop variable: "On pass one of the picture, what is written in the box that `song` points at? What changes on pass two?"
+- Numbering: "Trace the first pass by hand. What is the counter when `print()` runs, and what is it after the last line of the loop?"
+- Requirement checks: "Read the requirement again. Does each line of the output meet every part of it, or only the part you looked at?"
+- New list questions: "Write down the list after each step, one line per step. What does the list hold when each print line runs?"
+- Never write the finished program for the student. Ask them to trace one pass and say what they see.
