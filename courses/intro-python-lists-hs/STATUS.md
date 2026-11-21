@@ -29,7 +29,7 @@ Repo tag: intro-python-lists-hs-v1.0.
 | viability | research-analyst | delivered and approved | 00-viability/viability-brief.md, 00-viability/source-pack.md; PDFs dist/00-viability/viability-brief.pdf, dist/00-viability/source-pack.pdf |
 | syllabus | curriculum-architect | delivered and approved | 01-syllabus/syllabus.md; PDF dist/01-syllabus/syllabus.pdf |
 | deck | deck-writer | delivered | 02-deck/deck-m01.md; PDFs dist/02-deck/deck-m01.pdf, dist/02-deck/deck-m01-instructor.pdf |
-| assessments | assessment-designer | not delivered: agent and files removed for the guided task | none. Rebuild `.claude/agents/assessment-designer.md` from `specs/assessment-designer-spec.md`, then run it for module 1 |
+| assessments | assessment-designer | delivered 2026-11-20, not yet covered by Gate 2 | 03-assessments/student/quiz-m01.md, 03-assessments/instructor/quiz-m01-key.md, 03-assessments/instructor/ta-feedback-pack-m01.md; PDFs dist/03-assessments/student/quiz-m01.pdf, dist/03-assessments/instructor/quiz-m01-key.pdf, dist/03-assessments/instructor/ta-feedback-pack-m01.pdf |
 | labs | lab-engineer | delivered | 04-labs/lab-m01.md; PDF dist/04-labs/lab-m01.pdf |
 | qa | qa-reviewer | delivered, PASS WITH FIXES (run 3) | qa/qa-report.md, qa/alignment-matrix.md; PDFs dist/qa/qa-report.pdf, dist/qa/alignment-matrix.pdf |
 | ta | ta-agent | on demand, grounding manifest present | qa/ta-grounding-manifest.md |
@@ -40,6 +40,8 @@ All paths are under courses/intro-python-lists-hs/. APPROVALS.md and dist/APPROV
 
 Gate 2 approval waived QA-4: no quiz item shows captured output because the starter was never run. QA-13 is a script false positive and needs no fix.
 
+Checker through production: 0 blocking, 2 minor HEADING-CASE false positives (key Q5 heading holds code names; deck slide 16 holds song titles).
+
 ## Next step
 
-Guided task: once `.claude/agents/assessment-designer.md` exists, run only assessment-designer for module 1 to write the quiz, key and TA pack. The deck and lab are done: do not rerun them. Then run the checker through `production`.
+Human to decide whether to return to in-production and retake Gate 2 for the new quiz, key, and TA pack. The TA grounding manifest does not yet list the new TA pack.
