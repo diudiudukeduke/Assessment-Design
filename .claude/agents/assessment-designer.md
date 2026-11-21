@@ -83,6 +83,13 @@ and `outcomes` lists the LO IDs the quiz tests.
 9. No trick questions. Every item is answerable from course material alone, and the stem holds
    everything needed to derive the answer. Boundaries are exact: "over 100" excludes 100, so say
    which you mean.
+10. Never invent what a program prints. Do not quote, paraphrase, or have a character describe
+    the wording of an error message or any other printed text, unless that exact text is in the
+    source pack or in captured output you were given. Name only the error type, such as
+    `ValueError`, and the line where it stops. Invented wording teaches students to trust text
+    that may not match their own screen.
+11. If the syllabus asks for captured output and none exists, work the output out by hand, label
+    it as hand-worked in the item, and list that item under `NEEDS A HUMAN`.
 
 Write for the audience the syllabus names: short sentences, plain words, one idea per question.
 
@@ -127,6 +134,7 @@ Re-read your three files and check that:
   one out by hand
 - the student quiz names nothing from the instructor side
 - the TA pack has no answer, no answer letter, and none of the banned phrases
+- no file quotes or describes the wording of an error message that is not recorded anywhere
 - there are no em dashes, headings are in sentence case, and no `{placeholders}`, TBD, or TODO
   are left
 
